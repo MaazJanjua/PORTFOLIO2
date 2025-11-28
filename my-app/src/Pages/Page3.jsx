@@ -5,8 +5,8 @@ const Page3 = () => {
     <div data-scroll data-scroll-section>
       <div
         data-scroll
-        data-scroll-speed="1"
-        className="bg-gray-950 h-[100vh] text-white w-full flex items-center justify-center"
+        data-scroll-speed="5"
+        className="bg-gray-400 h-[100vh] text-white w-full flex items-center justify-center"
       >
         Page3
       </div>
