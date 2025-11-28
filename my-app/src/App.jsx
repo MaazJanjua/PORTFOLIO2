@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect } from "react";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+// Locomotive Scroll
+import LocomotiveScroll from "locomotive-scroll";
+import "locomotive-scroll/dist/locomotive-scroll.css";
+
+// GSAP
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
+// PAGES
+import Page1 from "./Pages/Page1";
+import Page2 from "./Pages/Page2";
+import Page3 from "./Pages/Page3";
+
+const App = () => {
+  useEffect(() => {
+    // Delay required for Vite + React so DOM is fully rendered
+    setTimeout(() => {
+      const scrollEl = document.querySelector("[data-scroll-container]");
+      if (!scrollEl) return;
+
+      const locoScroll = new LocomotiveScroll({
+        el: scrollEl,
+        smooth: true,
+        lerp: 0.08,
+      });
+
+      // Connect Locomotive → ScrollTrigger
+      locoScroll.on("scroll", ScrollTrigger.update);
+
+      ScrollTrigger.scrollerProxy(scrollEl, {
+        scrollTop(value) {
+          return arguments.length
+            ? locoScroll.scrollTo(value, { duration: 0, disableLerp: true })
+            : locoScroll.scroll.instance.scroll.y;
+        },
+        getBoundingClientRect() {
+          return {
+            top: 0,
+            left: 0,
+            width: window.innerWidth,
+            height: window.innerHeight,
+          };
+        },
+        pinType: scrollEl.style.transform ? "transform" : "fixed",
+      });
+
+      ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+      ScrollTrigger.refresh();
+    }, 300);
+
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div data-scroll-container>
+      <Page1 />
+      <Page2 />
+      <Page3 />
+    </div>
+  );
+};
 
-export default App
+export default App;
