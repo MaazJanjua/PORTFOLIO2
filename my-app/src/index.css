@@ -1,4 +1,32 @@
 @import "tailwindcss";
+@font-face {
+  font-family: anzo1;
+  src: url(./assets//Fonts//file.woff2);
+}
+@font-face {
+  font-family: anzo2;
+  src: url(./assets/Fonts/file\ \(2\).woff2);
+}
+@font-face {
+  font-family: anzoshrink;
+  src: url(./assets/Fonts/file\ \(3\).woff2);
+}
+@font-face {
+  font-family: anzo4;
+  src: url(./assets/Fonts/file\ \(4\).woff2);
+}
+@font-face {
+  font-family: anzo5;
+  src: url(./assets/Fonts/file\ \(5\).woff2);
+}
+@font-face {
+  font-family: anzo6;
+  src: url(./assets/Fonts/file\ \(6\).woff2);
+}
+@font-face {
+  font-family: anzo7;
+  src: url(./assets/Fonts/file\ \(7\).woff2);
+}
 html, body {
   height: 100%;
   width: 100%;

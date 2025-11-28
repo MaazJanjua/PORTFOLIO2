@@ -25,7 +25,7 @@ const Page1 = () => {
          data-scroll data-scroll-speed="-4"
          className="h-screen bg-gray-900 flex items-center justify-center">
       <h1 
-      className="text-5xl font-bold text-white
+      className="text-5xl font-bold text-white uppercase font-[anzo2]
       ">
         Page 1 Animation 🎯
       </h1>
